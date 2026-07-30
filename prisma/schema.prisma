@@ -1,0 +1,31 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+model Order {
+  orderId       String @id @map("order_id")
+  customerName  String @map("customer_name")
+  customerEmail String @map("customer_email")
+  customerAge   Int    @map("customer_age")
+  customerCity  String @map("customer_city")
+  address       String
+  purchaseDate  String @map("purchase_date")
+  category      String
+  product       String
+  quantity      Int
+  unitPrice     Float  @map("unit_price")
+  totalPrice    Float  @map("total_price")
+  paymentMethod String @map("payment_method")
+
+  @@index([category])
+  @@index([product])
+  @@index([customerEmail])
+  @@map("synthetic_ecommerce_dataset")
+}

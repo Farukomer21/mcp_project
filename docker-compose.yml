@@ -1,0 +1,9 @@
+services:
+  mcp-sales-server:
+    build: .
+    container_name: mcp-sales-server
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      - DATABASE_URL=file:/app/data.db
